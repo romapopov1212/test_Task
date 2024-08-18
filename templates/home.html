@@ -3,32 +3,28 @@
 {%block title%} Main page{%endblock%}
 
 {%block body%}
-
+<div class = "">
 <a href="{% url "add" %}">Add new car</a>
-
+</div>
 
 
  
   <h1>Car List</h1>
-  <select name="avto">
-    <option value="">--фильтры--</option>
-    <option value="1">по марке</option>
-    <option value="2">по модели</option>
-    <option value="3">по году выпуска</option>
-    <option value="4">по типу топлива</option>
-    <option value="5">по типу КПП</option>
-    <option value="6">по пробегу</option>
-    <option value="7">по цене</option>
-   
-  </select><br>
+  <form method="get">
+        {{myFilter.form}}
+
+    <button class = "btn btn-primary" type = "submit">
+        Search
+    </button>
+  </form>
   <table border="1">
       <tr>
           <th>Marka</th>
           <th>Model</th>
           <th>Year</th>
           <th>Type of Fuel</th>
-          <th>Transmission Type</th>
-          <th>Mileage (km)</th>
+          <th>Type KPP</th>
+          <th>Mileage</th>
           <th>Price</th>
       </tr>
       {% for car in cars %}

@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
-from personal.forms import AddForm
+from .forms import AddForm
 from .models import Car
+from .filters import CarFilter
 # Create your views here.
 
 def home_screen_view(request):
     cars = Car.objects.all()
-    return render(request, "home.html", {'cars' : cars})
+    
+    myFilter = CarFilter(request.GET, queryset=cars)
+    
+    cars = myFilter.qs
+    return render(request, "home.html", {'cars' : cars, 'myFilter' : myFilter})
 
 def add_screen_view(request):
     if request.POST:
