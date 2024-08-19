@@ -16,9 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from personal.views import home_screen_view, add_screen_view
+from personal.views import *
+from django.conf.urls import handler404, handler500, handler403, handler400
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_screen_view, name = 'home'),
     path('add/', add_screen_view, name = 'add'),
 ]
+
+
+handler404 = pageNotFound
+#handler403 = pageNotFound
+
